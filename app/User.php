@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -74,8 +75,8 @@ class User extends Authenticatable
         $this->getAttribute('password');
     }
 
-//    public function advertisements() : HasMany
-//    {
-//        return $this->hasMany(Advertisement::class);
-//    }
+    public function advertisements() : HasMany
+    {
+        return $this->hasMany(Advertisement::class);
+    }
 }
