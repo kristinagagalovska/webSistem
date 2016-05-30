@@ -6,4 +6,6 @@ interface AdvertisementsRepositoryInterface
 {
     public function store($advertisement);
 
+    public function all();
+
 }

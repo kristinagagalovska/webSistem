@@ -9,6 +9,7 @@ use App\Repositories\AdvertisementsRepositoryInterface;
 use Collective\Bus\Dispatcher;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
 class AdvertisementsController extends Controller
@@ -27,7 +28,7 @@ class AdvertisementsController extends Controller
         return view('advertisements.create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
         $title = $request->get('title');
         $description = $request->get('description');
@@ -84,8 +85,12 @@ class AdvertisementsController extends Controller
         $this->dispatcher->dispatch($advertisement);
 
         return redirect()->route('advertisement.create');
+    }
 
-
+    public function index() : View
+    {
+        $advertisements = $this->advertisements->all();
+        return view('advertisements.index', ['advertisements'=>$advertisements]);
     }
 
 }
