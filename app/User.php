@@ -23,4 +23,59 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function setName(string $name)
+    {
+        $this->setAttribute('name', $name);
+    }
+
+    public function setNumber(string $number)
+    {
+        $this->setAttribute('number', $number);
+    }
+
+    public function setEmail(string $email)
+    {
+        $this->setAttribute('email', $email);
+    }
+
+    public function setAdmin(bool $isAdmin)
+    {
+        $this->setAttribute('isadmin', $isAdmin);
+    }
+
+    public function setPassword(string $password)
+    {
+        $this->setAttribute('password', $password);
+    }
+
+    public function getName() : string
+    {
+        $this->getAttribute('name');
+    }
+
+    public function getNumber() : string
+    {
+        $this->getAttribute('number');
+    }
+
+    public function getEmail() :  string
+    {
+        $this->getAttribute('email');
+    }
+
+    public function isAdmin() : bool
+    {
+        $this->getAttribute('isadmin');
+    }
+
+    public function getPassword() : string
+    {
+        $this->getAttribute('password');
+    }
+
+//    public function advertisements() : HasMany
+//    {
+//        return $this->hasMany(Advertisement::class);
+//    }
 }
