@@ -8,4 +8,6 @@ interface AdvertisementsRepositoryInterface
 
     public function all();
 
+    public function find($id);
+
 }

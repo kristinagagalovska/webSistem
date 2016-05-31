@@ -12,7 +12,7 @@ $router->group([
     $router->get('/create', 'AdvertisementsController@create')->name('advertisement.create');
     $router->post('/', 'AdvertisementsController@store')->name('advertisement.store');
 
-
+    $router->get('/{id}', 'AdvertisementsController@view')->name('advertisement.view');
 });
 
 

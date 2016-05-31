@@ -17,4 +17,11 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
         return $advertisements;
     }
 
+    public function find($id)
+    {
+        $advertisement = Advertisement::find($id);
+
+        return $advertisement;
+    }
+
 }

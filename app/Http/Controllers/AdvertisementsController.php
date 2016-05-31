@@ -25,7 +25,7 @@ class AdvertisementsController extends Controller
 
     public function create() : View
     {
-        return view('advertisements.create');
+       return view('advertisements.create');
     }
 
     public function store(Request $request) : RedirectResponse
@@ -91,6 +91,12 @@ class AdvertisementsController extends Controller
     {
         $advertisements = $this->advertisements->all();
         return view('advertisements.index', ['advertisements'=>$advertisements]);
+    }
+
+    public function view($id) : View
+    {
+        $advertisement = $this->advertisements->find($id);
+        return view('advertisements.show', ['advertisement' => $advertisement]);
     }
 
 }
