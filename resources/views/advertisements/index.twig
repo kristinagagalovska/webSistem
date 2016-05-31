@@ -1,3 +1,8 @@
+<form method="GET" action="{{ route('advertisement.create', advertisement.id) }}">
+    <input type="hidden" name="_method" value="CREATE" />
+    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+    <button type="submit">Внеси оглас</button>
+</form>
 {% for advertisement in advertisements %}
 
     <p><label>Наслов:</label><a href="{{ route('advertisement.view', advertisement.id) }}">{{ advertisement.title }}</a></p>

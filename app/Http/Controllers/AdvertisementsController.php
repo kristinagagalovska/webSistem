@@ -85,7 +85,7 @@ class AdvertisementsController extends Controller
             );
         $this->dispatcher->dispatch($advertisement);
 
-        return redirect()->route('advertisement.create');
+        return redirect()->route('index');
     }
 
     public function index() : View
