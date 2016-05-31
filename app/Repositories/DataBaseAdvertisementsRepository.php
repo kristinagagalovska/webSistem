@@ -24,4 +24,9 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
         return $advertisement;
     }
 
+    public function delete($id)
+    {
+        Advertisement::destroy($id);
+    }
+
 }

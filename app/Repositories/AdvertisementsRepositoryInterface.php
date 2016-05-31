@@ -10,4 +10,6 @@ interface AdvertisementsRepositoryInterface
 
     public function find($id);
 
+    public function delete($id);
+
 }

@@ -16,6 +16,8 @@ $router->group([
 
     $router->get('{id}/edit', 'AdvertisementsController@edit')->name('advertisement.edit');
     $router->post('/{id}', 'AdvertisementsController@update')->name('advertisement.update');
+
+    $router->delete('/{advertisements}', 'AdvertisementsController@delete')->name('advertisement.delete');
 });
 
 

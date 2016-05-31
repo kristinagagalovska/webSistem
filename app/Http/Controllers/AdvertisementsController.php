@@ -163,7 +163,12 @@ class AdvertisementsController extends Controller
         $this->dispatcher->dispatch($advertisement);
 
         return redirect()->route('advertisement.view', $id);
+    }
 
+    public function delete($id) : RedirectResponse
+    {
+        $this->advertisements->delete($id);
+        return redirect()->route('index');
     }
 
 }
