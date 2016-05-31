@@ -13,6 +13,9 @@ $router->group([
     $router->post('/', 'AdvertisementsController@store')->name('advertisement.store');
 
     $router->get('/{id}', 'AdvertisementsController@view')->name('advertisement.view');
+
+    $router->get('{id}/edit', 'AdvertisementsController@edit')->name('advertisement.edit');
+    $router->post('/{id}', 'AdvertisementsController@update')->name('advertisement.update');
 });
 
 

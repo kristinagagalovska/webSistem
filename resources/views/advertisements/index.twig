@@ -1,4 +1,6 @@
 {% for advertisement in advertisements %}
     <p><label>Наслов:</label><a href="{{ route('advertisement.view', advertisement.id) }}">{{ advertisement.title }}</a></p>
     <p><label>Опис:</label>{{ advertisement.description}}</p>
+
+    <p><a href="{{ route('advertisement.edit', advertisement.id) }}">Измени оглас</a></p>
 {% endfor %}
