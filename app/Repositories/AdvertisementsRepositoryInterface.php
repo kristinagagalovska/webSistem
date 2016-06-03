@@ -11,5 +11,7 @@ interface AdvertisementsRepositoryInterface
     public function find($id);
 
     public function delete($id);
+    
+    public function search($type, $category, $town);
 
 }

@@ -9,6 +9,8 @@ $router->group([
 
     $router->get('/', 'AdvertisementsController@index')->name('index');
 
+    $router->post('/search', 'AdvertisementsController@search')->name('advertisement.search');
+    
     $router->get('/create', 'AdvertisementsController@create')->name('advertisement.create');
     $router->post('/', 'AdvertisementsController@store')->name('advertisement.store');
 

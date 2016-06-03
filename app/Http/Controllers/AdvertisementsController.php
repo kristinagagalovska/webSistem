@@ -171,4 +171,15 @@ class AdvertisementsController extends Controller
         return redirect()->route('index');
     }
 
+    public function search(Request $request)
+    {
+        $type = $request->get('type');
+        $category = $request->get('category');
+        $town = $request->get('town');
+
+        $advertisements = $this->advertisements->search($type, $category, $town);
+
+        return view('advertisements.index', ['advertisements'=>$advertisements]);
+    }
+
 }
