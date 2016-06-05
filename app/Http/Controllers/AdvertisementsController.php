@@ -5,13 +5,13 @@ declare (strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Commands\CreateAdvertisementCommand;
+use App\Commands\CreateImageCommand;
 use App\Commands\UpdateAdvertisementCommand;
 use App\Repositories\AdvertisementsRepositoryInterface;
 use Collective\Bus\Dispatcher;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-
 
 class AdvertisementsController extends Controller
 {
@@ -84,6 +84,18 @@ class AdvertisementsController extends Controller
             $userId
             );
         $this->dispatcher->dispatch($advertisement);
+
+        $files = $request->file('file');
+
+        $lastAdvertisement = $this->advertisements->lastAdvertisement();
+        $id = $lastAdvertisement->id;
+
+        if (!empty($files)) {
+            foreach ($files as $file) {
+                $command = new CreateImageCommand($file, $id);
+                $this->dispatcher->dispatch($command);
+            }
+        }
 
         return redirect()->route('index');
     }

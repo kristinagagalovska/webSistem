@@ -8,7 +8,7 @@ $router->group([
 ], function (Router $router) {
 
     $router->get('/', 'AdvertisementsController@index')->name('index');
-
+    
     $router->post('/search', 'AdvertisementsController@search')->name('advertisement.search');
     
     $router->get('/create', 'AdvertisementsController@create')->name('advertisement.create');
@@ -20,6 +20,9 @@ $router->group([
     $router->post('/{id}', 'AdvertisementsController@update')->name('advertisement.update');
 
     $router->delete('/{advertisements}', 'AdvertisementsController@delete')->name('advertisement.delete');
+
+
+
 });
 
 

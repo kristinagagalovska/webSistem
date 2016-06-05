@@ -14,4 +14,6 @@ interface AdvertisementsRepositoryInterface
     
     public function search($type, $category, $town);
 
+    public function lastAdvertisement();
+
 }

@@ -159,6 +159,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\AdvertisementRepositoryServiceProvider::class,
         App\Providers\BusServiceProvider::class,
+        App\Providers\ImageRepositoryServiceProvider::class,
 
 
     ],

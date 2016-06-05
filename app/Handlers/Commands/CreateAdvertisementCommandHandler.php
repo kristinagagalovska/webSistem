@@ -28,7 +28,7 @@ class CreateAdvertisementCommandHandler
         $advertisement->setNew($command->isNew());
         $advertisement->setNamesten($command->isNamesten());
         $advertisement->setAuthorId($command->getAuthorId());
-
+        
         $this->advertisements->store($advertisement);
     }
 

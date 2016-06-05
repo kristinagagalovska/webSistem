@@ -91,5 +91,4 @@ class CreateAdvertisementCommand
     {
         return $this->userId;
     }
-
 }

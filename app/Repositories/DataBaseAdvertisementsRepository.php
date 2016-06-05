@@ -39,4 +39,11 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
 
         return $topics;
     }
+
+    public function lastAdvertisement()
+    {
+        $advertisement = Advertisement::orderBy('created_at', 'desc')->first();
+        
+        return $advertisement;
+    }
 }
