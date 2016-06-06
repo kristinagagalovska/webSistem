@@ -22,6 +22,8 @@ $router->group([
     $router->delete('/{advertisements}', 'AdvertisementsController@delete')->name('advertisement.delete');
     
     $router->get('images/{filename}', 'ImagesController@show')->name('image');
+
+    $router->post('/{id}/comments', 'CommentsController@store')->name('comment.store');
 });
 
 
