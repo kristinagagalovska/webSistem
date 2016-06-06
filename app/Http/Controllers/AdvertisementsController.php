@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Commands\CreateAdvertisementCommand;
 use App\Commands\CreateImageCommand;
 use App\Commands\UpdateAdvertisementCommand;
+use App\Commands\UpdateImageCommand;
 use App\Providers\ImageRepositoryServiceProvider;
 use App\Repositories\AdvertisementsRepositoryInterface;
 use App\Repositories\ImagesRepositoryInterface;
@@ -96,6 +97,7 @@ class AdvertisementsController extends Controller
         $this->dispatcher->dispatch($advertisement);
 
         $files = $request->file('file');
+        
 
         $lastAdvertisement = $this->advertisements->lastAdvertisement();
         $id = $lastAdvertisement->id;
@@ -127,8 +129,9 @@ class AdvertisementsController extends Controller
     public function edit($id) : View
     {
         $advertisement =  $this->advertisements->find($id);
+        $images = $this->images->find($id);
 
-        return view('advertisements.edit', ['advertisement'=>$advertisement]);
+        return view('advertisements.edit', ['advertisement'=>$advertisement, 'images' => $images]);
     }
 
     public function update(Request $request, $id)
@@ -185,8 +188,21 @@ class AdvertisementsController extends Controller
             $namesten
         );
         $this->dispatcher->dispatch($advertisement);
-
         
+        $images = $this->images->find($id);
+        foreach ($images as $image) {
+            $this->images->delete($image->id);
+        }
+
+        $files = $request->file('file');
+
+        if (!empty($files)) {
+            foreach ($files as $file) {
+                $command = new CreateImageCommand($file, $id);
+                $this->dispatcher->dispatch($command);
+            }
+        }
+
         return redirect()->route('advertisement.view', $id);
     }
 

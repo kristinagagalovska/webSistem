@@ -1,7 +1,5 @@
 <?php
 
-declare (strict_types = 1);
-
 namespace App\Services;
 
 use Illuminate\Http\UploadedFile;
@@ -28,18 +26,11 @@ class ImagesUploader
     public function upload(UploadedFile $image) : \Symfony\Component\HttpFoundation\File\File
     {
         $extension = $image->getClientOriginalExtension(); // getting image extension
-        $fileName = rand(11111,99999).'.'.$extension;
+        $fileName = rand(11111, 99999) . '.' . $extension;
 
         $image = $image->move($this->directory, $fileName);
 
         return $image;
-    }
-    
-    
-    
-    
-    
-    
-    
 
+    }
 }

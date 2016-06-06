@@ -18,4 +18,16 @@ class DataBaseImagesRepository implements ImagesRepositoryInterface
 
         return $images;
     }
+    
+    public function delete($id)
+    {
+        Image::destroy($id);
+    }
+    
+    public function getById($id)
+    {
+        dd(Image::find($id));
+        $image = Image::find($id);
+        return $image;
+    }
 }
