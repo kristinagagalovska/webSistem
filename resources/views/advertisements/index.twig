@@ -12,7 +12,7 @@
         <option>Избери</option>
         <option value="prodava">Се продава</option>
         <option value="iznajmuva">Се изнајмува</option>
-    </select></br>
+    </select>
 
     <label>Категорија:</label>
     <select name="category">
@@ -22,7 +22,7 @@
         <option value="stan">Стан</option>
         <option value="soba">Соба</option>
         <option value="vikendica">Викендица</option>
-    </select></br>
+    </select>
 
     <label>Општина:</label>
     <select name="town">
@@ -32,7 +32,7 @@
         <option value="ohrid">Охрид</option>
         <option value="prilep">Прилеп</option>
         <option value="stip">Штип</option>
-    </select></br>
+    </select>
 
     <button type="submit">Пребарај.</button>
 </form>
@@ -42,6 +42,7 @@
     <p><label>Наслов:</label><a href="{{ route('advertisement.view', advertisement.id) }}">{{ advertisement.title }}</a></p>
     <p><label>Опис:</label>{{ advertisement.description}}</p>
 
+    {% if(loggedUserId == advertisement.user_id) %}
     <form method="GET" action="{{ route('advertisement.edit', advertisement.id) }}">
         <input type="hidden" name="_method" value="EDIT" />
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
@@ -53,5 +54,6 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
         <button type="submit">Избриши оглас</button>
     </form>
+    {% endif %}
 
 {% endfor %}

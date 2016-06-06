@@ -15,6 +15,7 @@ use App\Repositories\ImagesRepositoryInterface;
 use App\Services\ImagesResolver;
 use Collective\Bus\Dispatcher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\View\View;
@@ -40,7 +41,10 @@ class AdvertisementsController extends Controller
 
     public function create() : View
     {
-       return view('advertisements.create');
+        if(Auth::check()) {
+            return view('advertisements.create');            
+        }
+        return view('auth.login');
     }
 
     public function store(Request $request) : RedirectResponse
@@ -81,7 +85,7 @@ class AdvertisementsController extends Controller
             $namesten = false;
         }
 
-        $userId = 1; //momentalna difoltna vrednost
+        $userId = Auth::user()->id;
 
         $advertisement = new CreateAdvertisementCommand(
             $title,
@@ -118,6 +122,10 @@ class AdvertisementsController extends Controller
     public function index() : View
     {
         $advertisements = $this->advertisements->all();
+        if(Auth::check()) {
+            $loggedUserId = Auth::user()->id;
+            return view('advertisements.index', ['advertisements'=>$advertisements, 'loggedUserId'=>$loggedUserId]);
+        }
         return view('advertisements.index', ['advertisements'=>$advertisements]);
     }
 
@@ -126,11 +134,18 @@ class AdvertisementsController extends Controller
         $advertisement = $this->advertisements->find($id);
         $images = $this->images->find($id);
         $comments = $this->comments->find($id);
+        
+        if(Auth::check()) { 
+            $loggedUser=Auth::user()->id;
+        }   else {
+            $loggedUser=0;
+        }    
                 
         return view('advertisements.show', [
             'advertisement' => $advertisement, 
             'images' => $images,
-            'comments' => $comments    
+            'comments' => $comments,
+            'loggedUser' => $loggedUser,
         ]);
     }
 
@@ -230,5 +245,4 @@ class AdvertisementsController extends Controller
 
         return view('advertisements.index', ['advertisements'=>$advertisements]);
     }
-
 }

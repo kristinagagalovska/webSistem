@@ -20,6 +20,8 @@
     <p>{{ comment.content }}</p>
 {% endfor %}
 
+
+{% if(loggedUser != 0) %}
 <form action="{{ route('comment.store', advertisement.id) }}" method="POST">
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
     <br/>
@@ -27,4 +29,5 @@
     <textarea name="content" rows="3" ></textarea></div>
     <dd><button type="submit" class="btn btn-primary">Submit</button></dd>
 </form>
+{% endif %}
 

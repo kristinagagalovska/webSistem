@@ -6,17 +6,15 @@ use App\Commands\AddCommentCommand;
 use App\Repositories\CommentsRepositoryInterface;
 use Illuminate\Http\Request;
 use Collective\Bus\Dispatcher;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @property  dispatcher
  */
 class CommentsController extends Controller
 {
-    public function __construct(
-
-        Dispatcher $dispatcher
-    ) {
-
+    public function __construct(Dispatcher $dispatcher)
+    {
         $this->dispatcher = $dispatcher;
     }
 
@@ -24,7 +22,7 @@ class CommentsController extends Controller
     {
         $content = $request->get('content');
         $advertisementId = $id;
-        $author = '1';
+        $author =  Auth::user()->id;
         
         $comment = new AddCommentCommand($author, $advertisementId, $content);
         $this->dispatcher->dispatch($comment);

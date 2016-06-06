@@ -26,5 +26,6 @@ $router->group([
     $router->post('/{id}/comments', 'CommentsController@store')->name('comment.store');
 });
 
+Route::auth();
 
-
+Route::get('/home', 'HomeController@index');
