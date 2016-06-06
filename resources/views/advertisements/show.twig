@@ -7,9 +7,11 @@
 <p><label>Град:</label>{{ advertisement.town}}</p>
 <p><label>Цена:</label>{{ advertisement.price}}</p>
 
+{% for image in images %}
+    <img src="{{ route('image', image.file) }}">
+{% endfor %}
 
 <form method="GET" action="{{ route('index') }}">
-
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
     <button type="submit">Почетна</button>
 </form>

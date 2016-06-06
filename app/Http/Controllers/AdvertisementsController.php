@@ -7,9 +7,14 @@ namespace App\Http\Controllers;
 use App\Commands\CreateAdvertisementCommand;
 use App\Commands\CreateImageCommand;
 use App\Commands\UpdateAdvertisementCommand;
+use App\Providers\ImageRepositoryServiceProvider;
 use App\Repositories\AdvertisementsRepositoryInterface;
+use App\Repositories\ImagesRepositoryInterface;
+use App\Services\ImagesResolver;
 use Collective\Bus\Dispatcher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -18,10 +23,15 @@ class AdvertisementsController extends Controller
     private $advertisements;
     private $dispatcher;
 
-    public function __construct(Dispatcher $dispatcher, AdvertisementsRepositoryInterface $advertisements)
+    public function __construct(
+        Dispatcher $dispatcher, 
+        AdvertisementsRepositoryInterface $advertisements, 
+        ImagesRepositoryInterface $images
+    )
     {
         $this->dispatcher = $dispatcher;
         $this->advertisements = $advertisements;
+        $this->images = $images;
     }
 
     public function create() : View
@@ -109,7 +119,9 @@ class AdvertisementsController extends Controller
     public function view($id) : View
     {
         $advertisement = $this->advertisements->find($id);
-        return view('advertisements.show', ['advertisement' => $advertisement]);
+        $images = $this->images->find($id);
+                
+        return view('advertisements.show', ['advertisement' => $advertisement, 'images' => $images]);
     }
 
     public function edit($id) : View
@@ -174,6 +186,7 @@ class AdvertisementsController extends Controller
         );
         $this->dispatcher->dispatch($advertisement);
 
+        
         return redirect()->route('advertisement.view', $id);
     }
 
