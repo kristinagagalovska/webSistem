@@ -10,6 +10,7 @@ use App\Commands\UpdateAdvertisementCommand;
 use App\Commands\UpdateImageCommand;
 use App\Providers\ImageRepositoryServiceProvider;
 use App\Repositories\AdvertisementsRepositoryInterface;
+use App\Repositories\CommentsRepositoryInterface;
 use App\Repositories\ImagesRepositoryInterface;
 use App\Services\ImagesResolver;
 use Collective\Bus\Dispatcher;
@@ -27,12 +28,14 @@ class AdvertisementsController extends Controller
     public function __construct(
         Dispatcher $dispatcher, 
         AdvertisementsRepositoryInterface $advertisements, 
-        ImagesRepositoryInterface $images
+        ImagesRepositoryInterface $images,
+        CommentsRepositoryInterface $comments
     )
     {
         $this->dispatcher = $dispatcher;
         $this->advertisements = $advertisements;
         $this->images = $images;
+        $this->comments = $comments;
     }
 
     public function create() : View
@@ -122,8 +125,13 @@ class AdvertisementsController extends Controller
     {
         $advertisement = $this->advertisements->find($id);
         $images = $this->images->find($id);
+        $comments = $this->comments->find($id);
                 
-        return view('advertisements.show', ['advertisement' => $advertisement, 'images' => $images]);
+        return view('advertisements.show', [
+            'advertisement' => $advertisement, 
+            'images' => $images,
+            'comments' => $comments    
+        ]);
     }
 
     public function edit($id) : View

@@ -16,6 +16,10 @@
     <button type="submit">Почетна</button>
 </form>
 
+{% for comment in comments %}
+    <p>{{ comment.content }}</p>
+{% endfor %}
+
 <form action="{{ route('comment.store', advertisement.id) }}" method="POST">
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
     <br/>
@@ -23,3 +27,4 @@
     <textarea name="content" rows="3" ></textarea></div>
     <dd><button type="submit" class="btn btn-primary">Submit</button></dd>
 </form>
+

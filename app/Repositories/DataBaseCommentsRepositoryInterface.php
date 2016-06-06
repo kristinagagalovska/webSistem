@@ -10,4 +10,10 @@ class DataBaseCommentsRepositoryInterface implements CommentsRepositoryInterface
     {
         $comment->save();
     }
+    
+    public function find($id)
+    {
+        $comments = Comment::where('advertisement_id', '=', $id)->get();
+        return $comments;
+    }
 }
