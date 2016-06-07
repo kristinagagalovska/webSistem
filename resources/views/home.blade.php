@@ -9,6 +9,9 @@
 
                 <div class="panel-body">
                     You are logged in!
+
+                    <br><a href="{{ route('user.edit', Auth::user()->id) }}">Мој профил</a>
+                    <br><a href="{{ route('users.advertisements', Auth::user()->id) }}">Мои огласи</a>
                 </div>
             </div>
         </div>

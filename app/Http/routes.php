@@ -29,3 +29,8 @@ $router->group([
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/edit/{id}', 'UserController@edit')->name('user.edit')->middleware('auth');
+Route::post('/edit/{id}', 'UserController@update')->name('user.edit')->middleware('auth');
+
+Route::get('/{id}', 'UserController@myAdvertisements')->name('users.advertisements');

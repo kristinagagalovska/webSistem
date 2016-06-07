@@ -46,4 +46,11 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
         
         return $advertisement;
     }
+
+    public function findMy($id)
+    {
+        $advertisements = Advertisement::where('user_id', '=', $id)->get();
+        
+        return $advertisements;
+    }
 }
