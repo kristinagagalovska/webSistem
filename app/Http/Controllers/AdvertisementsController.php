@@ -47,7 +47,7 @@ class AdvertisementsController extends Controller
         return view('auth.login');
     }
 
-    public function store(Request $request) : RedirectResponse
+    public function store(Request $request)
     {
         $title = $request->get('title');
         $description = $request->get('description');
@@ -104,7 +104,6 @@ class AdvertisementsController extends Controller
         $this->dispatcher->dispatch($advertisement);
 
         $files = $request->file('file');
-        
 
         $lastAdvertisement = $this->advertisements->lastAdvertisement();
         $id = $lastAdvertisement->id;
@@ -116,7 +115,10 @@ class AdvertisementsController extends Controller
             }
         }
 
-        return redirect()->route('index');
+        $loggedUserId = Auth::user()->id;
+        $advertisements = $this->advertisements->all();
+
+        return view('advertisements.index', ['loggedUserId'=>$loggedUserId, 'advertisements'=>$advertisements]);
     }
 
     public function index() : View
@@ -126,7 +128,9 @@ class AdvertisementsController extends Controller
             $loggedUserId = Auth::user()->id;
             return view('advertisements.index', ['advertisements'=>$advertisements, 'loggedUserId'=>$loggedUserId]);
         }
-        return view('advertisements.index', ['advertisements'=>$advertisements]);
+        $loggedUserId = 0;
+
+        return view('advertisements.index', ['advertisements'=>$advertisements, 'loggedUserId'=>$loggedUserId]);
     }
 
     public function view($id) : View
@@ -136,16 +140,16 @@ class AdvertisementsController extends Controller
         $comments = $this->comments->find($id);
         
         if(Auth::check()) { 
-            $loggedUser=Auth::user()->id;
+            $loggedUserId=Auth::user()->id;
         }   else {
-            $loggedUser=0;
+            $loggedUserId=0;
         }    
                 
         return view('advertisements.show', [
             'advertisement' => $advertisement, 
             'images' => $images,
             'comments' => $comments,
-            'loggedUser' => $loggedUser,
+            'loggedUserId' => $loggedUserId,
         ]);
     }
 
@@ -242,7 +246,15 @@ class AdvertisementsController extends Controller
         $town = $request->get('town');
 
         $advertisements = $this->advertisements->search($type, $category, $town);
+        
+        if(Auth::check()) {
+            $loggedUserId=Auth::user()->id;
+        }   else {
+            $loggedUserId=0;
+        }
 
-        return view('advertisements.index', ['advertisements'=>$advertisements]);
+        dd($advertisements);
+        
+        return view('advertisements.index', ['advertisements'=>$advertisements, 'loggedUserId'=>$loggedUserId]);
     }
 }

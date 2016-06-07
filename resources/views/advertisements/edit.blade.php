@@ -1,12 +1,15 @@
-<form role="form" action="{{route('advertisement.store')}}" method="POST" enctype="multipart/form-data">
+@extends('layouts.app')
+
+@section('content')
+<form action="{{route('advertisement.update', $advertisement->id)}}" method="POST" enctype="multipart/form-data">
 
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
     <label>Наслов:</label>
-    <input type="text" name="title"></br>
+    <input type="text" name="title" value="{{ $advertisement->title }}"></br>
 
     <label>Опис:</label>
-    <input name="description" type="text"/></br>
+    <input name="description" type="text" value="{{ $advertisement->description }}"/></br>
 
     <label>Вид на оглас:</label>
     <select name="type">
@@ -26,7 +29,7 @@
     </select></br>
 
     <label>Адреса:</label>
-    <input name="address" type="text"/></br>
+    <input name="address" type="text" value="{{ $advertisement->address }}"/></br>
 
     <label>Општина:</label>
     <select name="town">
@@ -39,7 +42,7 @@
     </select></br>
 
     <label>Внеси цена</label>
-    <input name="price"  type="text"/> </br>
+    <input name="price"  type="text" value="{{ $advertisement->price }}"/> </br>
 
     <label>Дополнителни информации:</label>
     <label>Паркинг/Гаража:</label><input type="checkbox" name="garage" value=FALSE/></br>
@@ -47,7 +50,13 @@
     <label>Нова градба:</label><input type="checkbox" name="new" value=FALSE/></br>
     <label>Наместен:</label><input type="checkbox" name="namesten" value=FALSE/></br>
 
+
+    @foreach($images as $image)
+    <img src="{{  route('image', $image->file) }}">
+    @endforeach
+
     <input type="file" name="file[]" multiple/></br>
 
     <button type="submit" name="store">Додади оглас.</button>
 </form>
+@endsection
