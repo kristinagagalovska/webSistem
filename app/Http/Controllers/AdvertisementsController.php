@@ -109,7 +109,7 @@ class AdvertisementsController extends Controller
         $lastAdvertisement = $this->advertisements->lastAdvertisement();
         $id = $lastAdvertisement->id;
 
-        if (!empty($files)) {
+        if ($files[0] != null) {
             foreach ($files as $file) {
                 $command = new CreateImageCommand($file, $id);
                 $this->dispatcher->dispatch($command);
@@ -127,11 +127,10 @@ class AdvertisementsController extends Controller
         $advertisements = $this->advertisements->all();
         if(Auth::check()) {
             $loggedUserId = Auth::user()->id;
-            dd($advertisements);
+
             return view('advertisements.index', ['advertisements'=>$advertisements, 'loggedUserId'=>$loggedUserId]);
         }
         $loggedUserId = 0;
-
 
         return view('advertisements.index', ['advertisements'=>$advertisements, 'loggedUserId'=>$loggedUserId]);
     }
@@ -147,7 +146,11 @@ class AdvertisementsController extends Controller
             $loggedUserId=Auth::user()->id;
         }   else {
             $loggedUserId=0;
-        }    
+        }
+
+        if($images->isEmpty()) {
+            $images=null;
+        }
                 
         return view('advertisements.show', [
             'advertisement' => $advertisement, 
@@ -222,13 +225,15 @@ class AdvertisementsController extends Controller
         $this->dispatcher->dispatch($advertisement);
         
         $images = $this->images->find($id);
-        foreach ($images as $image) {
-            $this->images->delete($image->id);
-        }
 
         $files = $request->file('file');
 
-        if (!empty($files)) {
+        if ($files[0] != null) {
+            if($images) {
+                foreach ($images as $image) {
+                    $this->images->delete($image->id);
+                } }
+
             foreach ($files as $file) {
                 $command = new CreateImageCommand($file, $id);
                 $this->dispatcher->dispatch($command);

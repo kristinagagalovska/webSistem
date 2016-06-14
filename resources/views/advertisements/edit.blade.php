@@ -18,9 +18,9 @@
                                 <label for="select" class="col-lg-2 control-label">Вид на оглас</label>
                                 <div class="col-lg-10">
                                     <select class="form-control" id="type" name="type">
-                                        <option selected disabled name>Избери</option>
-                                        <option value="prodava">Се продава</option>
-                                        <option value="iznajmuva">Се изнајмува</option>
+                                        <option disabled>Избери</option>
+                                        <option value="prodava"  @if($advertisement->type == "prodava") selected @endif>Се продава</option>
+                                        <option value="iznajmuva" @if($advertisement->type == "iznajmuva") selected @endif>Се изнајмува</option>
                                     </select>
                                 </div>
                             </div>
@@ -30,11 +30,11 @@
                                 <div class="col-lg-10">
                                     <select class="form-control" id="category" name="category">
                                         <option selected disabled name>Избери</option>
-                                        <option value="apartman">Апартман</option>
-                                        <option value="kukja">Куќа/Вила</option>
-                                        <option value="stan">Стан</option>
-                                        <option value="soba">Соба</option>
-                                        <option value="vikendica">Викендица</option>
+                                        <option value="apartman" @if($advertisement->category == "apartman") selected @endif>Апартман</option>
+                                        <option value="kukja" @if($advertisement->category == "kukja") selected @endif>Куќа/Вила</option>
+                                        <option value="stan" @if($advertisement->category == "stan") selected @endif>Стан</option>
+                                        <option value="soba" @if($advertisement->category == "soba") selected @endif>Соба</option>
+                                        <option value="vikendica" @if($advertisement->category == "vikendica") selected @endif>Викендица</option>
                                     </select>
                                 </div>
                             </div>
@@ -66,11 +66,11 @@
                                 <div class="col-lg-10">
                                     <select class="form-control" id="category" name="town">
                                         <<option selected disabled name>Избери</option>
-                                        <option value="skopje">Скопје</option>
-                                        <option value="bitola">Битола</option>
-                                        <option value="ohrid">Охрид</option>
-                                        <option value="prilep">Прилеп</option>
-                                        <option value="stip">Штип</option>
+                                        <option value="skopje" @if($advertisement->town == "skopje") selected @endif>Скопје</option>
+                                        <option value="bitola" @if($advertisement->town == "bitola") selected @endif>Битола</option>
+                                        <option value="ohrid" @if($advertisement->town == "ohrid") selected @endif>Охрид</option>
+                                        <option value="prilep" @if($advertisement->town == "prilep") selected @endif>Прилеп</option>
+                                        <option value="stip" @if($advertisement->town == "stip") selected @endif>Штип</option>
                                     </select>
                                 </div>
                             </div>
@@ -134,7 +134,7 @@
                                 @endforeach
 
                                 <input type="file" name="file[]" multiple/>
-                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group">
