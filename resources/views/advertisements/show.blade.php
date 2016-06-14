@@ -2,37 +2,101 @@
 
 @section('content')
 
-    <p><label>Тип на оглас:</label>{{ $advertisement->type}}</p>
-    <p><label>Категорија:</label>{{ $advertisement->category}}</p>
+    <hr>
 
-    <p><label>Наслов:</label>{{ $advertisement->title}}</p>
-    <p><label>Опис:</label>{{ $advertisement->description}}</p>
-    <p><label>Адреса:</label>{{ $advertisement->address}}</p>
-    <p><label>Град:</label>{{ $advertisement->town}}</p>
-    <p><label>Цена:</label>{{ $advertisement->price}}</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h1><p>{{ $advertisement->title}}</p></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    @foreach($images as $image)
-    <img src="{{ route('image', $image->file) }}">
-    @endforeach
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                            GALERIJA
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <form method="GET" action="{{ route('index') }}">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-        <button type="submit">Почетна</button>
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <label>{{ $advertisement->type}}</label> <label>Цена:</label>{{ $advertisement->price }}</br>
+                        <label>{{ $advertisement->address}}</label>
+                        <label>{{ $advertisement->town}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <label>{{ $advertisement->description}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    @foreach ($comments as $comment)
-    <p>{{ $comment->content }}</p>
-    @endforeach
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h4><label>{{ $author->name}}</label></h4>
+                        <h5><p>{{ $author->number}}</p></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    @if($loggedUserId != 0)
-    <form action="{{ route('comment.store', $advertisement->id) }}" method="POST">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-        <br/>
-        <dt><p>Add comment:</p></dt>
-        <textarea name="content" rows="3" ></textarea></div>
-        <dd><button type="submit" class="btn btn-primary">Submit</button></dd>
-    </form>
-    @endif
+    <hr>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                @foreach ($comments as $comment)
+                    <blockquote class="blockquote-reverse">
+                        <p>{{ $comment->content }}</p>
+                        {{--<small>Someone famous in <cite title="Source Title">Source Title</cite></small>--}}
+                    </blockquote>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                @if($loggedUserId != 0)
+                    <form action="{{ route('comment.store', $advertisement->id) }}" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                        <textarea name="content" rows="3" cols="90"></textarea>
+                        </br>
+                        <div class="col-md-4 col-md-offset-10">
+                        <button type="submit" class="btn btn-default">Коментирај</button>
+                            </div>
+                    </form>
+                @endif
+            </div>
+        </div>
+    </div>
 
 @endsection

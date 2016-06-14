@@ -13,6 +13,7 @@ use App\Repositories\AdvertisementsRepositoryInterface;
 use App\Repositories\CommentsRepositoryInterface;
 use App\Repositories\ImagesRepositoryInterface;
 use App\Services\ImagesResolver;
+use App\User;
 use Collective\Bus\Dispatcher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -138,6 +139,7 @@ class AdvertisementsController extends Controller
         $advertisement = $this->advertisements->find($id);
         $images = $this->images->find($id);
         $comments = $this->comments->find($id);
+        $author = User::find($advertisement->user_id);
         
         if(Auth::check()) { 
             $loggedUserId=Auth::user()->id;
@@ -150,6 +152,7 @@ class AdvertisementsController extends Controller
             'images' => $images,
             'comments' => $comments,
             'loggedUserId' => $loggedUserId,
+            'author' => $author
         ]);
     }
 

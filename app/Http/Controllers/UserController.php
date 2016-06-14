@@ -9,6 +9,7 @@ use App\Repositories\ImagesRepositoryInterface;
 use App\User;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -44,9 +45,11 @@ class UserController extends Controller
         return redirect('/home');
     }
     
-    public function myAdvertisements($id)
+    public function myAdvertisements()
     {
+        $id = Auth::user()->id;
         $advertisements = $this->advertisements->findMy($id);
-        return view('users.advertisements')->with('advertisements', $advertisements);
+
+        return view('home')->with('advertisements', $advertisements);
     }
 }
