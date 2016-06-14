@@ -12,7 +12,9 @@ interface AdvertisementsRepositoryInterface
 
     public function delete($id);
     
-    public function search($type, $category, $town);
+    public function search3($type, $category, $town);
+
+    public function search2($category, $town);
 
     public function lastAdvertisement();
     

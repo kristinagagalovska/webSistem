@@ -29,13 +29,23 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
         Advertisement::destroy($id);
     }
 
-    public function search($type, $category, $town)
+    public function search3($type, $category, $town)
     {
         $advertisements = Advertisement::where('type', '=', $type)
-            ->Where('category', '=', $category)
-            ->Where('town', '=', $town)
+            ->where('category', '=', $category)
+            ->where('town', '=', $town)
             ->get()
-            ->toArray();
+            ->all();
+        
+        return $advertisements;
+    }
+
+    public function search2($category, $town)
+    {
+        $advertisements = Advertisement::where('category', '=', $category)
+            ->where('town', '=', $town)
+            ->get()
+            ->all();
 
         return $advertisements;
     }

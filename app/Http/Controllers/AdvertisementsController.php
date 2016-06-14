@@ -127,9 +127,11 @@ class AdvertisementsController extends Controller
         $advertisements = $this->advertisements->all();
         if(Auth::check()) {
             $loggedUserId = Auth::user()->id;
+            dd($advertisements);
             return view('advertisements.index', ['advertisements'=>$advertisements, 'loggedUserId'=>$loggedUserId]);
         }
         $loggedUserId = 0;
+
 
         return view('advertisements.index', ['advertisements'=>$advertisements, 'loggedUserId'=>$loggedUserId]);
     }
@@ -249,9 +251,11 @@ class AdvertisementsController extends Controller
         $town = $request->get('town');
 
         if( $type != 'Избери' && $category != 'Избери' && $town != 'Избери') {
-            $advertisements = $this->advertisements->search($type, $category, $town);            
-        } else {
-            $advertisements = [];
+            $advertisements = $this->advertisements->search3($type, $category, $town);
+        }
+
+        if( $type == 'Избери' && $category != 'Избери' && $town != 'Избери') {
+            $advertisements = $this->advertisements->search2($category, $town);
         }
 
         if(Auth::check()) {
@@ -259,7 +263,7 @@ class AdvertisementsController extends Controller
         }   else {
             $loggedUserId=0;
         }
-
-        return view('advertisements.index', ['advertisements'=>$advertisements, 'loggedUserId'=>$loggedUserId]);
+        
+        return view('advertisements.index',['advertisements'=>$advertisements, 'loggedUserId'=>$loggedUserId]);
     }
 }
