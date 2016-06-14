@@ -66,7 +66,6 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         @foreach($advertisements as $advertisement)
-
                             <div class="list-group">
                                 <a href="{{ route('advertisement.view', $advertisement->id) }}" class="list-group-item">
                                     <h1 class="list-group-item-heading">{{ $advertisement->title }}</h1>

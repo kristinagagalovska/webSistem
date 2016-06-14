@@ -248,16 +248,18 @@ class AdvertisementsController extends Controller
         $category = $request->get('category');
         $town = $request->get('town');
 
-        $advertisements = $this->advertisements->search($type, $category, $town);
-        
+        if( $type != 'Избери' && $category != 'Избери' && $town != 'Избери') {
+            $advertisements = $this->advertisements->search($type, $category, $town);            
+        } else {
+            $advertisements = [];
+        }
+
         if(Auth::check()) {
             $loggedUserId=Auth::user()->id;
         }   else {
             $loggedUserId=0;
         }
 
-        dd($advertisements);
-        
         return view('advertisements.index', ['advertisements'=>$advertisements, 'loggedUserId'=>$loggedUserId]);
     }
 }

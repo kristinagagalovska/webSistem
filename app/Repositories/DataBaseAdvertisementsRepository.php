@@ -31,13 +31,13 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
 
     public function search($type, $category, $town)
     {
-        $topics = Advertisement::where('type', '=', $type)
-            ->orWhere('category', '=', $category)
-            ->orWhere('town', '=', $town)
+        $advertisements = Advertisement::where('type', '=', $type)
+            ->Where('category', '=', $category)
+            ->Where('town', '=', $town)
             ->get()
             ->toArray();
 
-        return $topics;
+        return $advertisements;
     }
 
     public function lastAdvertisement()

@@ -34,3 +34,5 @@ Route::get('/edit/{id}', 'UserController@edit')->name('user.edit')->middleware('
 Route::post('/edit/{id}', 'UserController@update')->name('user.edit')->middleware('auth');
 
 Route::get('/home', 'UserController@myAdvertisements')->name('users.advertisements');
+
+Route::get('images/{filename}', ['as' => 'image', 'uses' => 'ImagesController@show']);
