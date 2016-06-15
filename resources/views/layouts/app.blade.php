@@ -50,6 +50,14 @@
                     <li><a href="{{ url('/home') }}">Мои огласи</a></li>
                 </ul>
 
+                @if(!Auth::guest())
+                    @if(Auth::user()->isadmin == 1)
+                        <ul class="nav navbar-nav">
+                            <li><a href="{{ url('/admin') }}">Админ панел</a></li>
+                        </ul>
+                        @endif
+                @endif
+
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->

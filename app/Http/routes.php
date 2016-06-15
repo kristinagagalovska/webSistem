@@ -36,3 +36,12 @@ Route::post('/edit/{id}', 'UserController@update')->name('user.edit')->middlewar
 Route::get('/home', 'UserController@myAdvertisements')->name('users.advertisements');
 
 Route::get('images/{filename}', ['as' => 'image', 'uses' => 'ImagesController@show']);
+
+
+$router->group([
+    'prefix' => 'admin',
+], function (Router $router) {
+
+    $router->get('/', 'AdminController@index')->name('admin.index')->middleware('admin');
+    $router->get('/advertisements', 'AdminController@advertisements')->name('admin.advertisements')->middleware('admin');
+});
