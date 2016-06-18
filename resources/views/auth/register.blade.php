@@ -5,7 +5,9 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Форма за регистрација</div>
+                <div class="panel-heading"><h5><label>Добродојдовте!</label></h5>
+                    <h5><label>За успешно пребарување и споделување простор неопходно е да се регистрирате тука.</label> </h5>
+                   </div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}

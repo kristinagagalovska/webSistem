@@ -40,15 +40,17 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/advertisements') }}">
-                    Огласник
+                    Огласи
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
+                @if(!Auth::guest())
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Мои огласи</a></li>
                 </ul>
+                @endif
 
                 @if(!Auth::guest())
                     @if(Auth::user()->isadmin == 1)

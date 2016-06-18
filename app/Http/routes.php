@@ -3,6 +3,8 @@
 use Illuminate\Routing\Router;
 /** @var Router $router */
 
+$router->get('/', 'AdvertisementsController@pocetna')->name('pocetna');
+
 $router->group([
     'prefix' => 'advertisements',
 ], function (Router $router) {
@@ -33,7 +35,7 @@ Route::get('/home', 'HomeController@index')->middleware('auth');
 Route::get('/edit/{id}', 'UserController@edit')->name('user.edit')->middleware('auth');
 Route::post('/edit/{id}', 'UserController@update')->name('user.edit')->middleware('auth');
 
-Route::get('/home', 'UserController@myAdvertisements')->name('users.advertisements');
+Route::get('/home', 'UserController@myAdvertisements')->name('users.advertisements')->middleware('auth');
 
 Route::get('images/{filename}', ['as' => 'image', 'uses' => 'ImagesController@show']);
 
@@ -41,7 +43,6 @@ Route::get('images/{filename}', ['as' => 'image', 'uses' => 'ImagesController@sh
 $router->group([
     'prefix' => 'admin',
 ], function (Router $router) {
-
     $router->get('/', 'AdminController@index')->name('admin.index')->middleware('admin');
     $router->get('/advertisements', 'AdminController@advertisements')->name('admin.advertisements')->middleware('admin');
 });

@@ -48,6 +48,11 @@ class AdvertisementsController extends Controller
         return view('auth.login');
     }
 
+    public function pocetna()
+    {
+        return view('pocetna');
+    }
+    
     public function store(Request $request)
     {
         $title = $request->get('title');
