@@ -61,22 +61,31 @@
     </div>
 
     <div class="container">
-        <div class="row">
+        {{--<div class="row">--}}
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-body">
+                {{--<div class="panel panel-default">--}}
+                    {{--<div class="panel-body">--}}
                         @foreach($advertisements as $advertisement)
                             <div class="list-group">
+                                <div class="row">
                                 <a href="{{ route('advertisement.view', $advertisement->id) }}" class="list-group-item">
+                                    <div class="col-md-3">
+                                        <img src="{{ route('image', 'default.jpg')}}" style="height:6em; width:6em;">
+                                        </br>
+                                        <p> <strong> {{$advertisement->price}} </strong></p>
+                                    </div>
                                     <h1 class="list-group-item-heading">{{ $advertisement->title }}</h1>
+                                    </br>
                                     <p class="list-group-item-text">{{ $advertisement->description}}</p>
+                                    </br>
                                 </a>
+                                </div>
                             </div>
                         @endforeach
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
 @endsection

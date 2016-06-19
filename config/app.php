@@ -160,7 +160,8 @@ return [
         App\Providers\AdvertisementRepositoryServiceProvider::class,
         App\Providers\BusServiceProvider::class,
         App\Providers\ImageRepositoryServiceProvider::class,
-        App\Providers\CommentServiceProvider::class
+        App\Providers\CommentServiceProvider::class,
+        App\Providers\UsersRepositoryServiceProvider::class
 
 
     ],

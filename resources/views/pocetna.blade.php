@@ -28,7 +28,7 @@
                         <option value="prilep">Прилеп</option>
                         <option value="stip">Штип</option>
                     </select>
-                    <button class="btn btn-default" type="submit"> Пребарај.</button>
+                    <button class="btn btn-default"  type="submit"> Пребарај.</button>
                 </form>
                 </h3>
             </div>
