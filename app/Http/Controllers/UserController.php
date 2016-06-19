@@ -6,10 +6,12 @@ namespace App\Http\Controllers;
 use App\Repositories\AdvertisementsRepositoryInterface;
 use App\Repositories\CommentsRepositoryInterface;
 use App\Repositories\ImagesRepositoryInterface;
+use App\Repositories\UsersRepositoryInterface;
 use App\User;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class UserController extends Controller
 {
@@ -17,13 +19,15 @@ class UserController extends Controller
         Dispatcher $dispatcher,
         AdvertisementsRepositoryInterface $advertisements,
         ImagesRepositoryInterface $images,
-        CommentsRepositoryInterface $comments
+        CommentsRepositoryInterface $comments,
+        UsersRepositoryInterface $users
     )
     {
         $this->dispatcher = $dispatcher;
         $this->advertisements = $advertisements;
         $this->images = $images;
         $this->comments = $comments;
+        $this->users = $users;
     }
     
     public function edit($id)
@@ -43,6 +47,29 @@ class UserController extends Controller
         $user->save();
 
         return redirect('/home');
+    }
+
+    public function delete($id) : RedirectResponse
+    {
+        $id = (int)$id;
+        $this->users->delete($id);
+        return redirect('/home');
+    }
+
+    public function setAdmin($id)
+    {
+        $id = (int)$id;
+        $user = User::find($id);
+
+        if( $user->isadmin){
+
+            $user->isadmin = 0;
+        }else{
+            $user->isadmin = 1;
+        }
+        $user->save();
+
+        return redirect()->route('admin.users');
     }
     
     public function myAdvertisements()

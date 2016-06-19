@@ -12,5 +12,10 @@ class DataBaseUsersRepository implements UsersRepositoryInterface
 
         return $users;
     }
+    
+    public function delete($id)
+    {
+        User::destroy($id);
+    }
 
 }

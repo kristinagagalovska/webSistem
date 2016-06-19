@@ -32,22 +32,21 @@
                                                     Викендица @endif</b></p>
                                         <div class="row ">
                                             <div class="col-md-3">
-                                                <form method="POST" action="">
+                                                <form method="POST" action="{{route('advertisement.delete', $advertisement->id)}}">
                                                     <input type="hidden" name="_method" value="DELETE" />
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                                     <button  class="btn btn-default btn-sm" type="submit">Delete</button>
                                                 </form>
                                             </div>
                                             <div class="col-md-3">
-                                                <form method="GET" action="">
+                                                <form method="GET" action="{{route('advertisement.edit', $advertisement->id)}}">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                                     <button class="btn btn-default btn-sm" style="width: 150%;">Edit</button>
                                                 </form>
                                             </div>
                                             {{--@if($user->admin)--}}
                                                 <div class="col-md-3">
-                                                    <form method="POST" action="">
-                                                        <input type="hidden" name="_method" value="PUT" />
+                                                    <form method="GET" action="{{route('advertisement.view', $advertisement->id)}}">
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                                         <button class="btn btn-default btn-sm" type="submit">View</button>
                                                     </form>

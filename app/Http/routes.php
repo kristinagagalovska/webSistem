@@ -35,6 +35,10 @@ Route::get('/home', 'HomeController@index')->middleware('auth');
 Route::get('/edit/{id}', 'UserController@edit')->name('user.edit')->middleware('auth');
 Route::post('/edit/{id}', 'UserController@update')->name('user.edit')->middleware('auth');
 
+Route::delete('/delete/{id}', 'UserController@delete')->name('user.delete')->middleware('auth');
+
+Route::put('/{id}', 'UserController@setAdmin')->name('user.setAdmin')->middleware('admin');
+
 Route::get('/home', 'UserController@myAdvertisements')->name('users.advertisements')->middleware('auth');
 
 Route::get('images/{filename}', ['as' => 'image', 'uses' => 'ImagesController@show']);
