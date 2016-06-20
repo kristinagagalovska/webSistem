@@ -3,7 +3,6 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @if($advertisements[0])
                 @foreach($advertisements as $advertisement)
                     <div class="col-md-4">
                         <div class="panel panel-default">
@@ -58,7 +57,6 @@
                         </div>
                     </div>
                 @endforeach
-            @endif
         </div>
     </div>
 @endsection

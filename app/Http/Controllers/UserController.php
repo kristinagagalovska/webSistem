@@ -53,7 +53,12 @@ class UserController extends Controller
     {
         $id = (int)$id;
         $this->users->delete($id);
-        return redirect('/home');
+        
+        if(Auth::user()->isadmin == 1) {
+            return redirect('/admin');
+        } else {
+            return redirect('/home');            
+        }     
     }
 
     public function setAdmin($id)

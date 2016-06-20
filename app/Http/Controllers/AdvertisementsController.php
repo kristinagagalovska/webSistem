@@ -8,6 +8,7 @@ use App\Commands\CreateAdvertisementCommand;
 use App\Commands\CreateImageCommand;
 use App\Commands\UpdateAdvertisementCommand;
 use App\Commands\UpdateImageCommand;
+use App\Http\Requests\AdvertisementRequest;
 use App\Providers\ImageRepositoryServiceProvider;
 use App\Repositories\AdvertisementsRepositoryInterface;
 use App\Repositories\CommentsRepositoryInterface;
@@ -53,7 +54,7 @@ class AdvertisementsController extends Controller
         return view('pocetna');
     }
     
-    public function store(Request $request)
+    public function store(AdvertisementRequest $request)
     {
         $title = $request->get('title');
         $description = $request->get('description');
@@ -153,6 +154,7 @@ class AdvertisementsController extends Controller
             $loggedUserId=0;
         }
 
+
         if($images->isEmpty()) {
             $images=null;
         }
@@ -251,7 +253,12 @@ class AdvertisementsController extends Controller
     public function delete($id) : RedirectResponse
     {
         $this->advertisements->delete($id);
-        return redirect()->route('index');
+
+        if(Auth::user()->isadmin == 1) {
+            return redirect('/admin');
+        } else {
+            return redirect('/home');
+        }
     }
 
     public function search(Request $request)

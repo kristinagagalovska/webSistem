@@ -10,6 +10,7 @@
                     <div class="panel-heading"></div>
                     <div class="panel-body">
                         <form class="form-horizontal" action="{{route('user.update', $user->id)}}" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="_method" value="PUT" />
                             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

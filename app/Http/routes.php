@@ -33,7 +33,7 @@ Route::auth();
 Route::get('/home', 'HomeController@index')->middleware('auth');
 
 Route::get('/edit/{id}', 'UserController@edit')->name('user.edit')->middleware('auth');
-Route::post('/edit/{id}', 'UserController@update')->name('user.edit')->middleware('auth');
+Route::put('/edit/{id}', 'UserController@update')->name('user.update')->middleware('auth');
 
 Route::delete('/delete/{id}', 'UserController@delete')->name('user.delete')->middleware('auth');
 
