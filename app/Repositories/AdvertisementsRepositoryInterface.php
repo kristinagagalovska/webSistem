@@ -12,9 +12,19 @@ interface AdvertisementsRepositoryInterface
 
     public function delete($id);
     
-    public function search3($type, $category, $town);
+    public function searchByTypeCategoryTown($type, $category, $town);
 
-    public function search2($category, $town);
+    public function searchByCategoryTown($category, $town);
+    
+    public function searchByTypeCategory($type, $category);
+    
+    public function searchByTypeTown($type, $town);
+    
+    public function searchByType($type);
+    
+    public function searchByCategory($category);
+    
+    public function searchByTown($town);
 
     public function lastAdvertisement();
     

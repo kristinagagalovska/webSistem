@@ -65,6 +65,7 @@
             <div class="col-md-8 col-md-offset-2">
                 {{--<div class="panel panel-default">--}}
                     {{--<div class="panel-body">--}}
+                @if($advertisements)
                         @foreach($advertisements as $advertisement)
                             <div class="list-group">
                                 <div class="row">
@@ -82,6 +83,7 @@
                                 </div>
                             </div>
                         @endforeach
+                    @endif
                     </div>
                 </div>
             {{--</div>--}}

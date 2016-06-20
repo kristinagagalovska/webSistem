@@ -29,7 +29,7 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
         Advertisement::destroy($id);
     }
 
-    public function search3($type, $category, $town)
+    public function searchByTypeCategoryTown($type, $category, $town)
     {
         $advertisements = Advertisement::where('type', '=', $type)
             ->where('category', '=', $category)
@@ -40,7 +40,7 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
         return $advertisements;
     }
 
-    public function search2($category, $town)
+    public function searchByCategoryTown($category, $town)
     {
         $advertisements = Advertisement::where('category', '=', $category)
             ->where('town', '=', $town)
@@ -49,6 +49,54 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
 
         return $advertisements;
     }
+
+    public function searchByTypeCategory($type, $category)
+    {
+        $advertisements = Advertisement::where('category', '=', $category)
+            ->where('type', '=', $type)
+            ->get()
+            ->all();
+
+        return $advertisements;
+    }
+
+    public function searchByTypeTown($type, $town)
+    {
+        $advertisements = Advertisement::where('town', '=', $town)
+            ->where('type', '=', $type)
+            ->get()
+            ->all();
+
+        return $advertisements;
+    }
+
+    public function searchByType($type)
+    {
+        $advertisements = Advertisement::where('type', '=', $type)
+            ->get()
+            ->all();
+
+        return $advertisements;
+    }
+
+    public function searchByTown($town)
+    {
+        $advertisements = Advertisement::where('town', '=', $town)
+            ->get()
+            ->all();
+
+        return $advertisements;
+    }
+
+    public function searchByCategory($category)
+    {
+        $advertisements = Advertisement::where('category', '=', $category)
+            ->get()
+            ->all();
+
+        return $advertisements;
+    }
+
 
     public function lastAdvertisement()
     {

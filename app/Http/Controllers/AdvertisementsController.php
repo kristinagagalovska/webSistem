@@ -267,12 +267,36 @@ class AdvertisementsController extends Controller
         $category = $request->get('category');
         $town = $request->get('town');
 
+        if( $type == 'Избери' && $category == 'Избери' && $town == 'Избери') {
+            $advertisements = [];
+        }
+
         if( $type != 'Избери' && $category != 'Избери' && $town != 'Избери') {
-            $advertisements = $this->advertisements->search3($type, $category, $town);
+            $advertisements = $this->advertisements->searchByTypeCategoryTown($type, $category, $town);
         }
 
         if( $type == 'Избери' && $category != 'Избери' && $town != 'Избери') {
-            $advertisements = $this->advertisements->search2($category, $town);
+            $advertisements = $this->advertisements->searchByCategoryTown($category, $town);
+        }
+
+        if( $type != 'Избери' && $category != 'Избери' && $town == 'Избери') {
+        $advertisements = $this->advertisements->searchByTypeCategory($type, $category);
+        }
+
+        if( $type != 'Избери' && $category == 'Избери' && $town != 'Избери') {
+            $advertisements = $this->advertisements->searchByTypeTown($type, $town);
+        }
+
+        if( $type != 'Избери' && $category == 'Избери' && $town == 'Избери') {
+            $advertisements = $this->advertisements->searchByType($type);
+        }
+
+        if( $type == 'Избери' && $category != 'Избери' && $town == 'Избери') {
+            $advertisements = $this->advertisements->searchByCategory($category);
+        }
+
+        if( $type == 'Избери' && $category == 'Избери' && $town != 'Избери') {
+            $advertisements = $this->advertisements->searchByTown($town);
         }
 
         if(Auth::check()) {
