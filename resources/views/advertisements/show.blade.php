@@ -80,7 +80,7 @@
                         {{ $author->name}}
                     </h3>
                     <h3 style="float: right"><small>Телефонски број:</small>
-                        {{ $author->number}}
+                        0{{ $author->number}}
                     </h3>
                 </div>
                 <div style="clear: both">
