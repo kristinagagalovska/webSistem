@@ -21,7 +21,6 @@ class CreateCommentsTable extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-
             $table->integer('advertisement_id')
                 ->unsigned();
             $table->foreign('advertisement_id')
@@ -29,7 +28,7 @@ class CreateCommentsTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();
-        });        
+        });
     }
 
     /**
