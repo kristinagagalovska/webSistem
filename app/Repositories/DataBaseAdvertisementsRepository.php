@@ -13,7 +13,8 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
 
     public function all()
     {
-        $advertisements = Advertisement::all()->all();
+        $advertisements = Advertisement::orderBy('created_at', 'asc')->get();
+
         return $advertisements;
     }
 

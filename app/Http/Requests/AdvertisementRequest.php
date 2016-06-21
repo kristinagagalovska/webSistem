@@ -16,7 +16,8 @@ class AdvertisementRequest extends FormRequest
             'category' => 'required',
             'address' => 'required',
             'town' => 'required',
-            'price' => 'required'            
+            'price' => 'required',
+            'images' => 'mimes:jpg,jpeg,png'
         ];
     }
 
@@ -24,5 +25,5 @@ class AdvertisementRequest extends FormRequest
     {
         return true;
     }
-
 }
+

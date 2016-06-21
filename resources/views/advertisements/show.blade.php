@@ -148,7 +148,6 @@
                 @foreach ($comments as $comment)
                     <blockquote class="blockquote-reverse">
                         <p>{{ $comment->content }}</p>
-                        {{--<small>Someone famous in <cite title="Source Title">Source Title</cite></small>--}}
                     </blockquote>
                 @endforeach
             </div>
@@ -171,6 +170,8 @@
             </div>
         </div>
     </div>
+
+    
 
     {{--</div>--}}
 

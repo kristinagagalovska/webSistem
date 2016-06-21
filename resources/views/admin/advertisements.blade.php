@@ -12,7 +12,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <img src="{{ route('image', 'default.jpg')}}" style="height:6em; width:5em;">
+                                            <img src="{{ route('image', 'default.jpg')}}" style="height:6em; width:5em;">
                                     </div>
                                     <div class="col-md-9">
                                         <p>Тип на оглас: <b> @if($advertisement->type == 'prodava')
