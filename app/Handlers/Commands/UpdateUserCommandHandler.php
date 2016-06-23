@@ -18,7 +18,6 @@ class UpdateUserCommandHandler
         $user = $this->users->find($command->getId());
         $user->setName($command->getName());
         $user->setNumber($command->getNumber());
-        $user->setAdmin($command->isAdmin());
         $user->setEmail($command->getEmail());
         $user->setPassword($command->getPassword());
         

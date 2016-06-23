@@ -9,7 +9,6 @@ class UpdateUserCommand
         $id,
         $name,
         $number,
-        $isadmin,
         $email,
         $password
     )
@@ -17,7 +16,6 @@ class UpdateUserCommand
         $this->id = $id;
         $this->name = $name;
         $this->number = $number;
-        $this->isadmin = $isadmin;
         $this->email = $email;
         $this->password = $password;
     }
@@ -41,12 +39,7 @@ class UpdateUserCommand
     {
         return $this->email;
     }
-
-    public function isAdmin() : bool
-    {
-        return $this->isadmin;
-    }
-
+    
     public function getPassword() : string
     {
         return $this->password;
