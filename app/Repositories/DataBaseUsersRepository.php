@@ -13,6 +13,18 @@ class DataBaseUsersRepository implements UsersRepositoryInterface
         return $users;
     }
     
+    public function find($id)
+    {
+        $user = User::find($id);
+        
+        return $user;
+    }
+    
+    public function store($user)
+    {
+        $user->save();
+    }
+
     public function delete($id)
     {
         User::destroy($id);

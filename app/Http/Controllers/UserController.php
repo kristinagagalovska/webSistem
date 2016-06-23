@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Commands\UpdateUserCommand;
 use App\Repositories\AdvertisementsRepositoryInterface;
 use App\Repositories\CommentsRepositoryInterface;
 use App\Repositories\ImagesRepositoryInterface;
@@ -32,19 +33,30 @@ class UserController extends Controller
     
     public function edit($id)
     {
-        $user = User::find($id);
+        $user = $this->users->find($id);
         return view('users.edit')->with('user', $user);
     }
 
     public function update(Request $reguest, $id)
     {
-        $user = User::find($id);
-        $user->name = $reguest->get('name');
-        $user->number = $reguest->get('number');
-        $user->isadmin = $reguest->get('isadmin');
-        $user->email = $reguest->get('email');
-        $user->password = bcrypt($reguest->get('password'));
-        $user->save();
+//        $user = User::find($id);
+//        $user->name = $reguest->get('name');
+//        $user->number = $reguest->get('number');
+//        $user->isadmin = $reguest->get('isadmin');
+//        $user->email = $reguest->get('email');
+//        $user->password = bcrypt($reguest->get('password'));
+//        $user->save();
+        
+        $user = new UpdateUserCommand(
+            $id,
+            $reguest->get('name'),
+            $reguest->get('number'),
+            (bool)$reguest->get('isadmin'),
+            $reguest->get('email'),
+            bcrypt($reguest->get('password'))            
+        );
+        
+        $this->dispatcher->dispatch($user);
 
         return redirect('/home');
     }
