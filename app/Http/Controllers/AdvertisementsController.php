@@ -154,7 +154,6 @@ class AdvertisementsController extends Controller
             $loggedUserId=0;
         }
 
-
         if($images->isEmpty()) {
             $images=null;
         }

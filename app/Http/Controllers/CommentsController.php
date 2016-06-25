@@ -22,7 +22,7 @@ class CommentsController extends Controller
     {
         $content = $request->get('content');
         $advertisementId = $id;
-        $author =  Auth::user()->id;
+        $author =  Auth::user();
         
         $comment = new AddCommentCommand($author, $advertisementId, $content);
         $this->dispatcher->dispatch($comment);

@@ -13,10 +13,9 @@ class Comment extends Model
         $this->setAttribute('content', $content);
     }
 
-    public function setAuthor(int $user_id)
+    public function setAuthor(User $user)
     {
-        //$this->author()->associate($user);
-        $this->setAttribute('user_id', $user_id);
+        $this->author()->associate($user);
     }
 
     public function setAdvertisementId(int $advertisement_id)
@@ -31,8 +30,7 @@ class Comment extends Model
 
     public function getAuthor() 
     {
-        //return $this->author;
-        return $this->getAttribute('user_id');
+        return $this->author;
     }
 
     public function getAdvertisementId() : int
@@ -47,7 +45,7 @@ class Comment extends Model
     
     public function author() : BelongsTo
     {
-        return $this->belongsTo(Author::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 }

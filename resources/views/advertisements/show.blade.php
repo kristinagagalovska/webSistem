@@ -148,6 +148,7 @@
                 @foreach ($comments as $comment)
                     <blockquote class="blockquote-reverse">
                         <p>{{ $comment->content }}</p>
+                        <small><cite>{{$comment->getAuthor()->name}}</cite></small>
                     </blockquote>
                 @endforeach
             </div>
