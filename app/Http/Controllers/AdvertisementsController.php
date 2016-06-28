@@ -66,30 +66,30 @@ class AdvertisementsController extends Controller
 
         $garage = $request->get('garage');
         if($garage == 'FALSE/') {
-            $garage = true;
-        } else {
             $garage = false;
+        } else {
+            $garage = true;
         }
 
         $renovated = $request->get('renovated');
         if($renovated == 'FALSE/') {
-            $renovated = true;
-        } else {
             $renovated = false;
+        } else {
+            $renovated = true;
         }
 
         $new = $request->get('new');
         if($new == 'FALSE/') {
-            $new = true;
-        } else {
             $new = false;
+        } else {
+            $new = true;
         }
 
         $namesten = $request->get('namestem');
         if($namesten == 'FALSE/') {
-            $namesten = true;
-        } else {
             $namesten = false;
+        } else {
+            $namesten = true;
         }
 
         $userId = Auth::user()->id;
@@ -188,30 +188,30 @@ class AdvertisementsController extends Controller
 
         $garage = $request->get('garage');
         if($garage == 'FALSE/') {
-            $garage = true;
-        } else {
             $garage = false;
+        } else {
+            $garage = true;
         }
 
         $renovated = $request->get('renovated');
         if($renovated == 'FALSE/') {
-            $renovated = true;
-        } else {
             $renovated = false;
+        } else {
+            $renovated = true;
         }
 
         $new = $request->get('new');
         if($new == 'FALSE/') {
-            $new = true;
-        } else {
             $new = false;
+        } else {
+            $new = true;
         }
 
         $namesten = $request->get('namestem');
         if($namesten == 'FALSE/') {
-            $namesten = true;
-        } else {
             $namesten = false;
+        } else {
+            $namesten = true;
         }
 
         $advertisement = new UpdateAdvertisementCommand(

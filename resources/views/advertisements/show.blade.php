@@ -124,16 +124,16 @@
 
                 <div style="clear: both">
                     <h3 style="float: right;"> <small>Поседува гаража</small>  @if($advertisement->garage == 'TRUE')
-                            <i>Yes</i> @else <i>-</i>@endif </h3>
+                            <i>Да</i> @else <i>-</i>@endif </h3>
                     <h3 style="float: left;"><small>Реновиран </small>  @if($advertisement->renovated == 'TRUE')
-                            <i>Yes</i> @else <i>-</i>@endif </h3>
+                            <i>Да</i> @else <i>-</i>@endif </h3>
                 </div>
 
                 <div style="clear: both">
                     <h3 style="float: right;"> <small>Наместен</small>  @if($advertisement->namesten == 'TRUE')
-                            <i>Yes</i> @else <i></i>@endif </h3>
+                            <i>Да</i> @else <i>-</i>@endif </h3>
                     <h3 style="float: left;"><small>Нова градба </small>  @if($advertisement->new == 'TRUE')
-                            <i>Yes</i> @else <i>-</i>@endif </h3>
+                            <i>Да</i> @else <i>-</i>@endif </h3>
                 </div>
 
             </div>

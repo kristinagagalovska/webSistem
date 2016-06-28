@@ -13,7 +13,7 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
 
     public function all()
     {
-        $advertisements = Advertisement::orderBy('created_at', 'asc')->get();
+        $advertisements = Advertisement::orderBy('created_at', 'dsc')->get();
 
         return $advertisements;
     }
@@ -35,6 +35,7 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
         $advertisements = Advertisement::where('type', '=', $type)
             ->where('category', '=', $category)
             ->where('town', '=', $town)
+            ->orderBy('created_at', 'dsc')
             ->get()
             ->all();
         
@@ -45,6 +46,7 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
     {
         $advertisements = Advertisement::where('category', '=', $category)
             ->where('town', '=', $town)
+            ->orderBy('created_at', 'dsc')
             ->get()
             ->all();
 
@@ -55,6 +57,7 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
     {
         $advertisements = Advertisement::where('category', '=', $category)
             ->where('type', '=', $type)
+            ->orderBy('created_at', 'dsc')
             ->get()
             ->all();
 
@@ -65,6 +68,7 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
     {
         $advertisements = Advertisement::where('town', '=', $town)
             ->where('type', '=', $type)
+            ->orderBy('created_at', 'dsc')
             ->get()
             ->all();
 
@@ -83,6 +87,7 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
     public function searchByTown($town)
     {
         $advertisements = Advertisement::where('town', '=', $town)
+            ->orderBy('created_at', 'dsc')
             ->get()
             ->all();
 
@@ -92,6 +97,7 @@ class DataBaseAdvertisementsRepository implements AdvertisementsRepositoryInterf
     public function searchByCategory($category)
     {
         $advertisements = Advertisement::where('category', '=', $category)
+            ->orderBy('created_at', 'dsc')
             ->get()
             ->all();
 
